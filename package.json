@@ -1,0 +1,25 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "A Personal Blog",
+  "main": "index.js",
+  "scripts": {
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "dev": "nr update && vitepress dev",
+    "update": "nr -C metadata update"
+  },
+  "keywords": [
+    "blog"
+  ],
+  "author": "c37csq",
+  "license": "ISC",
+  "devDependencies": {
+    "vitepress": "^1.1.4",
+    "@types/fs-extra": "^11.0.4",
+    "fs-extra": "^11.2.0",
+    "esno": "^4.0.0",
+    "@antfu/ni": "^0.21.12",
+    "vite": "^5.1.3"
+  }
+}
