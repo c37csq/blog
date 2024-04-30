@@ -42,11 +42,13 @@ function readFileContent(mdFiles: string[], dir: string): DailyLearningItem[] {
   for (let i = 0; i < mdFiles.length; i++) {
     let path = mdFiles[i];
     let content = readFileSync(path, 'utf-8');
-    const title = content.split('\r')[0].replace(/\#*\s/, '');
+    // const title = content.split('\r')[0].replace(/\#*\s/, '');
+    // const title = content.match(/^.*$/g);
+    const title = /^.*$/m.exec(content)[0].replace('# ', '');
     fileList.push({
       title: title,
       path: transformPath(path, dir)
-    })
+    });
   }
   return fileList;
 }
