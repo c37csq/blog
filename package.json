@@ -4,10 +4,11 @@
   "description": "A Personal Blog",
   "main": "index.js",
   "scripts": {
-    "build": "nr update && vitepress build",
+    "build": "nr clean && nr update && vitepress build",
     "preview": "nr build && vitepress preview",
     "dev": "nr update && vitepress dev",
-    "update": "nr -C metadata update"
+    "update": "nr -C metadata update",
+    "clean": "rimraf --glob dist types \".vitepress/dist\""
   },
   "keywords": [
     "blog"
@@ -20,6 +21,7 @@
     "fs-extra": "^11.2.0",
     "esno": "^4.0.0",
     "@antfu/ni": "^0.21.12",
-    "vite": "^5.1.3"
+    "vite": "^5.1.3",
+    "rimraf": "^5.0.5"
   }
 }
