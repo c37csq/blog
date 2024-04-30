@@ -4,8 +4,8 @@
   "description": "A Personal Blog",
   "main": "index.js",
   "scripts": {
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview",
+    "build": "nr update && vitepress build",
+    "preview": "nr build && vitepress preview",
     "dev": "nr update && vitepress dev",
     "update": "nr -C metadata update"
   },
