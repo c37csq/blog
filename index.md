@@ -12,10 +12,18 @@ hero:
     alt: 陈大思
   actions:
     - theme: brand
-      text: 前端WEB文章
+      text: 每日一学
+      link: DAILY_LEARNING
+    - theme: alt
+      text: 前端文章
       link: ARTICLE_PAGE
 
 features:
+  - icon: 🧱
+    title: 每日一学
+    details: 每天进步一点点。
+    link: DAILY_LEARNING
+    linkText: more
   - icon: 🖋️
     title: 前端文章
     details: 记录与分享工作中和学习中遇到的问题，方便各位同道交流学习。书山有路勤为径，学海无涯苦作舟。

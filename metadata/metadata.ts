@@ -1,5 +1,6 @@
-import { articles as _articles } from './index.json';
+import { dailyLearning as _dailyLearning, articles as _articles } from './index.json';
 
-export const articles = _articles;
+export const dailyLearningList = _dailyLearning;
+export const articleList = _articles;
 
 

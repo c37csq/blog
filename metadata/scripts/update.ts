@@ -1,12 +1,16 @@
-import type { ArticleItem, PackageIndexes } from '../types';
+import type {ArticleItem, DailyLearningItem, PackageIndexes} from '../types';
 import { resolve, join } from 'path';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
 
-export const DIR_ARTICLES = resolve(__dirname, '../../articles');
+export const DAILY_LEARNING = 'dailyLearning';
+
+export const ARTICLES_DIR = 'articles';
+
+export const DIR_DAILY_LEARNING = resolve(__dirname, `../../${DAILY_LEARNING}`);
+export const DIR_ARTICLES = resolve(__dirname, `../../${ARTICLES_DIR}`);
 
 export const DIR_PACKAGE = resolve(__dirname, '..')
 
-const ARTICLE_DIR = 'articles';
 
 /**
  * Recursively reads all files within a directory and its subdirectories.
@@ -33,15 +37,15 @@ function readFile(baseDir: string): string[] {
  * @param vueFiles An array of file paths to .vue files.
  * @returns An array of objects containing the file path and data-name attribute value.
  */
-function readFileContent(mdFiles: string[]): ArticleItem[] {
+function readFileContent(mdFiles: string[], dir: string): DailyLearningItem[] {
   const fileList: ArticleItem[] = [];
   for (let i = 0; i < mdFiles.length; i++) {
     let path = mdFiles[i];
     let content = readFileSync(path, 'utf-8');
     const title = content.split('\r')[0].replace(/\#*\s/, '');
     fileList.push({
-      articleTitle: title,
-      articlePath: transformPath(path)
+      title: title,
+      path: transformPath(path, dir)
     })
   }
   return fileList;
@@ -52,8 +56,8 @@ function readFileContent(mdFiles: string[]): ArticleItem[] {
  * @param path The file path to transform.
  * @returns The transformed file path.
  */
-function transformPath(path: string): string {
-  const index = path.indexOf(ARTICLE_DIR);
+function transformPath(path: string, dir: string): string {
+  const index = path.indexOf(dir);
   let result;
   if (index !== -1) {
     result = path.slice(index - 1).replace('index.md', '');
@@ -65,12 +69,19 @@ function transformPath(path: string): string {
 
 async function readArticleData() {
   const indexJsonData: PackageIndexes = {
+    dailyLearning: [],
     articles: []
   };
-  const fileList = readFile(DIR_ARTICLES);
-  const markdownFiles = fileList.filter((filename) => filename.endsWith('.md'));
-  const resList = readFileContent(markdownFiles);
-  indexJsonData.articles = resList;
+  // 每日一学
+  const dailyLearningFile = readFile(DIR_DAILY_LEARNING);
+  const dailyLearningMarkdownFiles = dailyLearningFile.filter((filename) => filename.endsWith('.md'));
+  const dailyLearningList = readFileContent(dailyLearningMarkdownFiles, DAILY_LEARNING);
+  // 文章
+  const articlesFile = readFile(DIR_ARTICLES);
+  const articlesMarkdownFiles = articlesFile.filter((filename) => filename.endsWith('.md'));
+  const articlesList = readFileContent(articlesMarkdownFiles, ARTICLES_DIR);
+  indexJsonData.dailyLearning = dailyLearningList;
+  indexJsonData.articles = articlesList;
   return indexJsonData;
 }
 

@@ -1,9 +1,15 @@
 export interface ArticleItem {
-  articleTitle: string;
-  articlePath: string;
+  title: string;
+  path: string;
+}
+
+export interface DailyLearningItem {
+  title: string;
+  path: string;
 }
 
 export interface PackageIndexes {
+  dailyLearning: DailyLearningItem[];
   articles: ArticleItem[]
 }
 

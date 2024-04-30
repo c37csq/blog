@@ -1,20 +1,34 @@
 import { defineConfig } from 'vitepress'
-import { articles } from '../metadata/metadata'
+import { dailyLearningList, articleList } from '../metadata/metadata'
+import { DAILY_LEARNING, ARTICLES_DIR } from '../metadata/scripts/update';
 
-const Articles = articles.map(v => ({
-  text: v.articleTitle,
-  link: v.articlePath
-}))
+const DailyLearning = dailyLearningList.map(v => ({
+  text: v.title,
+  link: v.path
+}));
 
-const ArticleSideBar = [
+const Articles = articleList.map(v => ({
+  text: v.title,
+  link: v.path
+}));
+
+const DailyLearningSideBar = [
+  {
+    text: '每日一学',
+    items: DailyLearning
+  }
+];
+
+const ArticlesSideBar = [
   {
     text: '文章',
     items: Articles
   }
-]
+];
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/blog/',
   title: "陈大思博客", // 网站标题
   description: "陈大思的博客", // 网站描述
   themeConfig: { // 主题配置
@@ -24,13 +38,15 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [ // 导航栏的配置
       { text: '首页', link: '/' },
-      { text: '文章', link: Articles[0].link },
+      { text: '每日一学', link: DailyLearning[0].link, activeMatch: `/${DAILY_LEARNING}/` },
+      { text: '文章', link: Articles[0].link, activeMatch: `/${ARTICLES_DIR}/` },
       { text: 'Markdown示例', link: '/markdown-examples' }
     ],
 
     sidebar: {
       // 侧边栏配置
-      '/articles/': ArticleSideBar
+      '/dailyLearning/': DailyLearningSideBar,
+      '/articles/': ArticlesSideBar,
     },
 
     socialLinks: [ // 友链的配置，也可以叫做社交链接

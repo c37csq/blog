@@ -1,9 +1,14 @@
 import type { Plugin } from 'vite';
-import { articles } from '../metadata/metadata'
+import { dailyLearningList, articleList } from '../metadata/metadata'
 
-const Articles = articles.map(v => ({
-  text: v.articleTitle,
-  link: v.articlePath
+const DailyLearning = dailyLearningList.map(v => ({
+  text: v.title,
+  link: v.path
+}));
+
+const Articles = articleList.map(v => ({
+  text: v.title,
+  link: v.path
 }))
 
 export function MarkdownTransform(): Plugin {
@@ -13,7 +18,9 @@ export function MarkdownTransform(): Plugin {
     async transform(code, id) {
       if (!id.match(/\.md\b/))
         return null
-      code = code.replace(/ARTICLE_PAGE/g, Articles[0].link);
+      code = code
+        .replace(/DAILY_LEARNING/g, DailyLearning[0].link)
+        .replace(/ARTICLE_PAGE/g, Articles[0].link);
       return code;
     },
   }
