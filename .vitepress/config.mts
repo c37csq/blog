@@ -44,6 +44,9 @@ export default defineConfig({
   title: "陈大思博客", // 网站标题
   description: "陈大思的博客", // 网站描述
   themeConfig: { // 主题配置
+    search: {
+      provider: 'local'
+    },
     footer: {
       copyright: '陈大思版权所有 Copyright © 2024 创作不易请尊重他人劳动成果，未经允许禁止转载',
     },
@@ -52,7 +55,6 @@ export default defineConfig({
       { text: '首页', link: '/' },
       { text: '每日一学', link: DailyLearning[0].link, activeMatch: `/${DAILY_LEARNING}/` },
       { text: '文章', link: Articles[0].link, activeMatch: `/${ARTICLES_DIR}/` },
-      { text: 'Markdown示例', link: '/markdown-examples' }
     ],
 
     sidebar: {
