@@ -2,3 +2,4 @@ index.json
 node_modules
 */dist
 .cache
+.vitepress/cache
