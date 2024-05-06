@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress'
-import { dailyLearningList, articleList } from '../metadata/metadata'
+import { dailyLearningList, articleList, bookList } from '../metadata/metadata'
 import { DAILY_LEARNING, ARTICLES_DIR } from '../metadata/scripts/update';
 
 const DailyLearning = dailyLearningList.map(v => ({
@@ -8,6 +8,11 @@ const DailyLearning = dailyLearningList.map(v => ({
 }));
 
 const Articles = articleList.map(v => ({
+  text: v.title,
+  link: v.path
+}));
+
+const Books = bookList.map(v => ({
   text: v.title,
   link: v.path
 }));
@@ -23,6 +28,13 @@ const ArticlesSideBar = [
   {
     text: '文章',
     items: Articles
+  }
+];
+
+const BooksSideBar = [
+  {
+    text: '书籍',
+    items: Books
   }
 ];
 
@@ -47,6 +59,7 @@ export default defineConfig({
       // 侧边栏配置
       '/dailyLearning/': DailyLearningSideBar,
       '/articles/': ArticlesSideBar,
+      '/books/': BooksSideBar,
     },
 
     socialLinks: [ // 友链的配置，也可以叫做社交链接

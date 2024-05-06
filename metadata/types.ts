@@ -3,6 +3,11 @@ export interface ArticleItem {
   path: string;
 }
 
+export interface BookItem {
+  title: string;
+  path: string;
+}
+
 export interface DailyLearningItem {
   title: string;
   path: string;
@@ -10,6 +15,7 @@ export interface DailyLearningItem {
 
 export interface PackageIndexes {
   dailyLearning: DailyLearningItem[];
-  articles: ArticleItem[]
+  articles: ArticleItem[];
+  books: BookItem[];
 }
 

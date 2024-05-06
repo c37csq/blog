@@ -1,4 +1,4 @@
-import type {ArticleItem, DailyLearningItem, PackageIndexes} from '../types';
+import type { ArticleItem, DailyLearningItem, PackageIndexes } from '../types';
 import { resolve, join } from 'path';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
 
@@ -6,8 +6,11 @@ export const DAILY_LEARNING = 'dailyLearning';
 
 export const ARTICLES_DIR = 'articles';
 
+export const BOOKS_DIR = 'books';
+
 export const DIR_DAILY_LEARNING = resolve(__dirname, `../../${DAILY_LEARNING}`);
 export const DIR_ARTICLES = resolve(__dirname, `../../${ARTICLES_DIR}`);
+export const DIR_BOOKS = resolve(__dirname, `../../${BOOKS_DIR}`);
 
 export const DIR_PACKAGE = resolve(__dirname, '..')
 
@@ -42,8 +45,6 @@ function readFileContent(mdFiles: string[], dir: string): DailyLearningItem[] {
   for (let i = 0; i < mdFiles.length; i++) {
     let path = mdFiles[i];
     let content = readFileSync(path, 'utf-8');
-    // const title = content.split('\r')[0].replace(/\#*\s/, '');
-    // const title = content.match(/^.*$/g);
     const title = /^.*$/m.exec(content)[0].replace('# ', '');
     fileList.push({
       title: title,
@@ -72,7 +73,8 @@ function transformPath(path: string, dir: string): string {
 async function readArticleData() {
   const indexJsonData: PackageIndexes = {
     dailyLearning: [],
-    articles: []
+    articles: [],
+    books: []
   };
   // 每日一学
   const dailyLearningFile = readFile(DIR_DAILY_LEARNING);
@@ -82,8 +84,13 @@ async function readArticleData() {
   const articlesFile = readFile(DIR_ARTICLES);
   const articlesMarkdownFiles = articlesFile.filter((filename) => filename.endsWith('.md'));
   const articlesList = readFileContent(articlesMarkdownFiles, ARTICLES_DIR);
+  // 书籍
+  const booksFile = readFile(DIR_BOOKS);
+  const booksMarkdownFiles = booksFile.filter((filename) => filename.endsWith('.md'));
+  const booksList = readFileContent(booksMarkdownFiles, BOOKS_DIR);
   indexJsonData.dailyLearning = dailyLearningList;
   indexJsonData.articles = articlesList;
+  indexJsonData.books = booksList;
   return indexJsonData;
 }
 

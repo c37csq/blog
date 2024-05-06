@@ -1,5 +1,5 @@
 import type { Plugin } from 'vite';
-import { dailyLearningList, articleList } from '../metadata/metadata'
+import { dailyLearningList, articleList, bookList } from '../metadata/metadata'
 
 const DailyLearning = dailyLearningList.map(v => ({
   text: v.title,
@@ -9,7 +9,12 @@ const DailyLearning = dailyLearningList.map(v => ({
 const Articles = articleList.map(v => ({
   text: v.title,
   link: v.path
-}))
+}));
+
+const Books = bookList.map(v => ({
+  text: v.title,
+  link: v.path
+}));
 
 export function MarkdownTransform(): Plugin {
   return {
@@ -20,7 +25,8 @@ export function MarkdownTransform(): Plugin {
         return null
       code = code
         .replace(/DAILY_LEARNING/g, DailyLearning[0].link)
-        .replace(/ARTICLE_PAGE/g, Articles[0].link);
+        .replace(/ARTICLE_PAGE/g, Articles[0].link)
+        .replace(/BOOK_PAGE/g, Books[0].link);
       return code;
     },
   }
