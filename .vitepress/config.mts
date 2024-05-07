@@ -45,7 +45,12 @@ export default defineConfig({
   description: "陈大思的博客", // 网站描述
   themeConfig: { // 主题配置
     search: {
-      provider: 'local'
+      provider: 'algolia',
+      options: {
+        appId: 'YV1BHX9OGG', // 你的 Application ID
+        apiKey: '053f28d0b9303de9a139ec3985c4b284', // 你的Search API Key
+        indexName: 'c37csqio' // 你的indexName
+      }
     },
     footer: {
       copyright: '陈大思版权所有 Copyright © 2024 创作不易请尊重他人劳动成果，未经允许禁止转载',
