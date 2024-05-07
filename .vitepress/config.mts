@@ -53,7 +53,7 @@ export default defineConfig({
       }
     },
     footer: {
-      copyright: '陈大思版权所有 Copyright © 2024 创作不易请尊重他人劳动成果，未经允许禁止转载',
+      copyright: '陈大思版权所有 Copyright © 2024',
     },
     // https://vitepress.dev/reference/default-theme-config
     nav: [ // 导航栏的配置
