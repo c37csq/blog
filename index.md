@@ -7,7 +7,7 @@ hero:
   text: "学习前端知识"
   tagline: 记录与分享工作当中遇到问题和前端知识
   image:
-    src: /avatar.jpg
+    src: /avatar.JPG
     style: "border-radius: 50%"
     alt: 陈大思
   actions:
