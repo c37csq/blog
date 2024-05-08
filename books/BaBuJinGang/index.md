@@ -34,7 +34,7 @@
 
 金刚功历史悠久。据师传，早在唐代已有雏形。到宋代，许多宫观已在推广。经元、明至清代早期，已普及到民间，有的历名为《八段锦》。随着各门派、各人之修炼、心法与动作有所变化。我们现传的金刚功，是按内部师承称八部金刚功（又称外八部），在心法、顺序、招式动作上，与八段锦都有很大的不同。现抄录比较如下：
 
-<div style="text-align: center;">
+<div style="display: flex;justify-content: center;align-items: center;">
 <img src="./images/1.jpg">
 </div>
 
@@ -71,7 +71,7 @@
 
 1．金刚功中握的拳为方拳，大拇指盖住四指的指甲，如图：
 
-<div style="text-align: center;">
+<div style="display: flex;justify-content: center;align-items: center;">
 <img src="./images/2.jpg">
 </div>
 
