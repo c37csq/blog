@@ -1,17 +1,14 @@
-export interface ArticleItem {
+export interface Item {
   title: string;
   path: string;
+  lastUpdated: number;
 }
 
-export interface BookItem {
-  title: string;
-  path: string;
-}
+export interface ArticleItem extends Item {}
 
-export interface DailyLearningItem {
-  title: string;
-  path: string;
-}
+export interface BookItem extends Item {}
+
+export interface DailyLearningItem extends Item {}
 
 export interface PackageIndexes {
   dailyLearning: DailyLearningItem[];

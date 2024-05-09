@@ -4,7 +4,7 @@
 
 八部金刚功应用“天人合一”的自然规律，结合“阴阳五行”的中医理论，通过八套动作运用刚性内劲之气来疏通全身的经脉，使身躯、骨骼、关节的连接畅通，调整脊椎骨的某些变形与错位，使其神经系统恢复正常；同时协调五脏六腑的运作，排除体内各种病气，从而达到阴阳平衡、祛病健身、延年益寿的目的。实为养生长寿之上乘功法。本功法不分男女皆可习练。
 
-八部金刚功学习讲解：*https://search.bilibili.com/all?keyword=%E5%85%AB%E9%83%A8%E9%87%91%E5%88%9A%E5%8A%9F&from_source=webtop_search&spm_id_from=333.1007&search_source=5*
+八部金刚功学习讲解：*https://www.bilibili.com/video/BV1pd4y1E7Gt/?spm_id_from=333.337.search-card.all.click&vd_source=1e68d259fd2a215ca9e5290c695db0ef*
 
 <div style="text-align: center;">
 

@@ -1,6 +1,7 @@
-import type { ArticleItem, DailyLearningItem, PackageIndexes } from '../types';
+import type { PackageIndexes, Item } from '../types';
 import { resolve, join } from 'path';
 import { readdirSync, readFileSync, statSync, writeFileSync } from 'fs';
+import Git from 'simple-git';
 
 export const DAILY_LEARNING = 'dailyLearning';
 
@@ -14,6 +15,10 @@ export const DIR_BOOKS = resolve(__dirname, `../../${BOOKS_DIR}`);
 
 export const DIR_PACKAGE = resolve(__dirname, '..');
 
+export const DIR_ROOT = resolve(__dirname, '../..');
+
+
+export const git = Git(DIR_ROOT);
 
 /**
  * Recursively reads all files within a directory and its subdirectories.
@@ -40,15 +45,16 @@ function readFile(baseDir: string): string[] {
  * @param vueFiles An array of file paths to .vue files.
  * @returns An array of objects containing the file path and data-name attribute value.
  */
-function readFileContent(mdFiles: string[], dir: string): DailyLearningItem[] {
-  const fileList: ArticleItem[] = [];
+async function readFileContent(mdFiles: string[], dir: string): Promise<Item[]> {
+  const fileList: Item[] = [];
   for (let i = 0; i < mdFiles.length; i++) {
-    let path = mdFiles[i];
-    let content = readFileSync(path, 'utf-8');
+    let dirPath = mdFiles[i];
+    let content = readFileSync(dirPath, 'utf-8');
     const title = /^.*$/m.exec(content)[0].replace('# ', '');
     fileList.push({
       title: title,
-      path: transformPath(path, dir)
+      path: transformPath(dirPath, dir),
+      lastUpdated: +await git.raw(['log', '-1', '--format=%at', dirPath]) * 1000,
     });
   }
   return fileList;
@@ -70,7 +76,7 @@ function transformPath(path: string, dir: string): string {
   return result.replace(/\\/g, '/');
 }
 
-async function readArticleData() {
+async function readData() {
   const indexJsonData: PackageIndexes = {
     dailyLearning: [],
     articles: [],
@@ -79,23 +85,23 @@ async function readArticleData() {
   // 每日一学
   const dailyLearningFile = readFile(DIR_DAILY_LEARNING);
   const dailyLearningMarkdownFiles = dailyLearningFile.filter((filename) => filename.endsWith('.md'));
-  const dailyLearningList = readFileContent(dailyLearningMarkdownFiles, DAILY_LEARNING);
+  const dailyLearningList = await readFileContent(dailyLearningMarkdownFiles, DAILY_LEARNING);
   // 文章
   const articlesFile = readFile(DIR_ARTICLES);
   const articlesMarkdownFiles = articlesFile.filter((filename) => filename.endsWith('.md'));
-  const articlesList = readFileContent(articlesMarkdownFiles, ARTICLES_DIR);
+  const articlesList = await readFileContent(articlesMarkdownFiles, ARTICLES_DIR);
   // 书籍
   const booksFile = readFile(DIR_BOOKS);
   const booksMarkdownFiles = booksFile.filter((filename) => filename.endsWith('.md'));
-  const booksList = readFileContent(booksMarkdownFiles, BOOKS_DIR);
-  indexJsonData.dailyLearning = dailyLearningList;
-  indexJsonData.articles = articlesList;
-  indexJsonData.books = booksList;
+  const booksList = await readFileContent(booksMarkdownFiles, BOOKS_DIR);
+  indexJsonData.dailyLearning = dailyLearningList.sort((item1, item2) => item1.lastUpdated - item2.lastUpdated);
+  indexJsonData.articles = articlesList.sort((item1, item2) => item1.lastUpdated - item2.lastUpdated);
+  indexJsonData.books = booksList.sort((item1, item2) => item1.lastUpdated - item2.lastUpdated);
   return indexJsonData;
 }
 
 async function run() {
-  const indexes = await readArticleData();
+  const indexes = await readData();
   writeFileSync(join(DIR_PACKAGE, 'index.json'), JSON.stringify(indexes, null, 2));
 }
 
