@@ -12,7 +12,7 @@ export const DIR_DAILY_LEARNING = resolve(__dirname, `../../${DAILY_LEARNING}`);
 export const DIR_ARTICLES = resolve(__dirname, `../../${ARTICLES_DIR}`);
 export const DIR_BOOKS = resolve(__dirname, `../../${BOOKS_DIR}`);
 
-export const DIR_PACKAGE = resolve(__dirname, '..')
+export const DIR_PACKAGE = resolve(__dirname, '..');
 
 
 /**
