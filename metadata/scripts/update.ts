@@ -94,9 +94,9 @@ async function readData() {
   const booksFile = readFile(DIR_BOOKS);
   const booksMarkdownFiles = booksFile.filter((filename) => filename.endsWith('.md'));
   const booksList = await readFileContent(booksMarkdownFiles, BOOKS_DIR);
-  indexJsonData.dailyLearning = dailyLearningList.sort((item1, item2) => item1.lastUpdated - item2.lastUpdated);
-  indexJsonData.articles = articlesList.sort((item1, item2) => item1.lastUpdated - item2.lastUpdated);
-  indexJsonData.books = booksList.sort((item1, item2) => item1.lastUpdated - item2.lastUpdated);
+  indexJsonData.dailyLearning = dailyLearningList.sort((item1, item2) => item2.lastUpdated - item1.lastUpdated);
+  indexJsonData.articles = articlesList.sort((item1, item2) => item2.lastUpdated - item1.lastUpdated);
+  indexJsonData.books = booksList.sort((item1, item2) => item2.lastUpdated - item1.lastUpdated);
   return indexJsonData;
 }
 
