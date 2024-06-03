@@ -11,6 +11,26 @@
 </div>
 ```
 
+```css
+.list-item {
+    width: 400px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    background-color: lightblue;
+    margin: 8px auto;
+    cursor: move;
+    user-select: none;
+    border-radius: 5px;
+}
+
+.list-item.moving {
+    background: transparent;
+    color: transparent;
+    border: 1px dashed #ccc;
+}
+```
+
 ```javascript
 const list = document.querySelector('.list');
 
