@@ -1,7 +1,6 @@
 # 拖拽排序
 
 ```html
-
 <div class="list">
   <div draggable="true" class="list-item">1</div>
   <div draggable="true" class="list-item">2</div>
