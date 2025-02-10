@@ -54,18 +54,6 @@
 <br/>
 <img src="./images/足太阴脾经位置.jpg"/>
 
-## 足太阴脾经
-
-### 图解
-
-<br />
-<img src="./images/足太阴脾经图解.jpg"/>
-
-### 位置
-
-<br/>
-<img src="./images/足太阴脾经位置.jpg"/>
-
 ## 手少阴心经
 
 ### 图解
