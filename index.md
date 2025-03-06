@@ -29,9 +29,9 @@ features:
     details: 记录与分享工作中和学习中遇到的问题，方便各位同道交流学习。书山有路勤为径，学海无涯苦作舟。
     link: ARTICLE_PAGE
     linkText: 更多
-  # - icon: 📚
-  #   title: 传统文化分享。
-  #   details: 弘扬中华传统文化，学习人生哲理，做最真实的自己。
-  #   link: BOOK_PAGE
-  #   linkText: 更多
+  - icon: 📚
+    title: 传统文化分享。
+    details: 弘扬中华传统文化，学习人生哲理，做最真实的自己。
+    link: BOOK_PAGE
+    linkText: 更多
 ---
